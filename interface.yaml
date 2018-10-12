@@ -2,3 +2,10 @@ name: barbican-secrets
 summary: Interface for a secrets plugin to the Barbican charm.
 maintainer: OpenStack Charmers <openstack-charmers@lists.ubuntu.com>
 repo: https://github.com/openstack-charmers/charm-interface-barbican-secrets
+ignore:
+  - 'unit_tests'
+  - '.stestr.conf'
+  - 'test-requirements.txt'
+  - 'tox.ini'
+  - '.gitignore'
+  - '.travis.yml'

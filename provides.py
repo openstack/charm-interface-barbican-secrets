@@ -12,11 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
+# the reactive framework unfortunately does not grok `import as` in conjunction
+# with decorators on class instance methods, so we have to revert to `from ...`
+# imports
+from charms.reactive import Endpoint
 
-sys.path.append('src')
-sys.path.append('src/lib')
 
-# Mock out charmhelpers so that we can test without it.
-import charms_openstack.test_mocks  # noqa
-charms_openstack.test_mocks.mock_charmhelpers()
+class BarbicanSecretsProvides(Endpoint):
+    """This is the barbican-{type}secrets end of the relation."""
+
+    def publish_plugin_info(self, name, data, reference=None):
+        for relation in self.relations:
+            relation.to_publish['name'] = name
+            relation.to_publish['data'] = data
+            relation.to_publish['reference'] = reference
