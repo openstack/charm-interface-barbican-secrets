@@ -5,3 +5,5 @@
 build
 .unit-state.db
 *.swp
+.coverage
+cover/
